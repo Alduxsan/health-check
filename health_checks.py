@@ -26,7 +26,11 @@ def check_disk_usage(disk, min_gb, min_percent):
 def check_root_full():
 	"""Devuelve True si la particion de raiz esta llena"""
 	return check_disk_usage(disk="/",min_gb=2,min_percent=10)
-	
+
+def check_cpu_constrained():
+	"""Retorna True si el cpu esta bajo mucho uso"""
+	return psutil.cpu_percent(1) > 75
+
 def main():
 	checks=[
 		(check_reboot,"Reinicio pendiente"),
