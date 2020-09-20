@@ -2,7 +2,8 @@
 import os
 import sys
 import shutil
-import sys
+import socket
+import psutil
 
 def check_reboot():
 
@@ -31,10 +32,21 @@ def check_cpu_constrained():
 	"""Retorna True si el cpu esta bajo mucho uso"""
 	return psutil.cpu_percent(1) > 75
 
+
+def check_no_network():
+	"""Retorna True si falla al resolver la url de google"""
+	try:
+		socket.gethostbyname("www.google.com")
+		return False
+	except:
+		return True
+
 def main():
 	checks=[
 		(check_reboot,"Reinicio pendiente"),
+		(check_cpu_constrained, "CPU Load too high"),
 		(check_root_full,"Particion de raiz llena"),
+		(check_no_network,"No hay conexion de red"),
 		]
 	everything_ok = True
 	for check, msg in checks:
