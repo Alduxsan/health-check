@@ -6,7 +6,7 @@ import sys
 
 def check_reboot():
 
-	"""Devuelve True si la computadora tiene un reinicio pendiente."""
+	"""Devuelve True solo si la computadora tiene un reinicio pendiente."""
 
 	return os.path.exists("/run/reboot-required")
 	
