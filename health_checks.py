@@ -34,7 +34,7 @@ def check_cpu_constrained():
 
 
 def check_no_network():
-	"""Retorna True si falla al resolver la url de google"""
+	"""Retorna True si falla al resolver la url de google.com"""
 	try:
 		socket.gethostbyname("www.google.com")
 		return False
@@ -62,3 +62,4 @@ def main():
 	
 main()
  
+
